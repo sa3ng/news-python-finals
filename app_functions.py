@@ -75,11 +75,12 @@ def summarize_news_api(articles: list, sentences_count: int) -> list:
     ----------
     articles list with summary element added to each dict
     """
+    
     for article in articles:
         summary = summarize_html(article.get('url'), sentences_count)
         article.update({'summary': summary})
-
     return articles
+
 
 
 

@@ -1,6 +1,7 @@
 import os
 from app_functions import get_top_headlines, search_articles
 import streamlit as st
+from streamlit_option_menu import option_menu
 #-----declare imports here
 
 #Preloading
@@ -10,14 +11,47 @@ with open( "style.css" ) as css:
 #News API key - Sa3ng
 API_KEY = "4a579d60db244444b74cf8fc149f8d64"
 
-st.title('News Summarizer')
 
-#Sidebar
-search_choice = st.sidebar.radio('', options=['Top Headlines', 'Search Term'])
-sentences_count = 3
+st.title('HapoNS -  News Summarizer')
 
-if search_choice == 'Top Headlines':
-    category = st.sidebar.selectbox('Search By Category:', options=['business', 
+#navbar - option menu
+def streamlit_menu():
+    with st.sidebar:
+        selected = option_menu(
+            menu_title="Main Menu",  # required
+            options=["Home", "Projects", "Contact"],  # required
+            icons=["house", "book", "envelope"],  # optional
+            menu_icon="cast",  # optional
+            default_index=0,  # optional
+            styles = {
+                "container": {
+                    "font-family":"Century Gothic"
+                },
+                "nav-link": {
+                    "font-family":"Century Gothic"
+                },
+            }
+        )
+    return selected
+
+
+
+selected = streamlit_menu()
+
+if selected == "Home":
+    st.title(f"You have selected {selected}")
+if selected == "Projects":
+    st.title(f"You have selected {selected}")
+if selected == "Contact":
+    st.title(f"You have selected {selected}")
+
+
+
+# #Sidebar
+sentences_count = 5
+
+
+category = st.sidebar.selectbox('Search By Category:', options=['business', 
                                                             'entertainment', 
                                                             'general', 
                                                             'health', 
@@ -25,24 +59,16 @@ if search_choice == 'Top Headlines':
                                                             'sports', 
                                                             'technology'], index=2)
     
-    summaries = get_top_headlines(sentences_count, apiKey=API_KEY, 
+summaries = get_top_headlines(sentences_count, apiKey=API_KEY, 
                                                    sortBy='publishedAt', 
                                                    country='us', 
                                                    category=category)
 
 
-elif search_choice == 'Search Term':
-    search_term = st.sidebar.text_input('Enter Search Term:')
 
-    if not search_term:
-        summaries = []
-        st.write('Please enter a search term =)')
-    else:
-        summaries = search_articles(sentences_count, apiKey=API_KEY, 
-                                                     sortBy='publishedAt', 
-                                                     q=search_term)
 
-#main body - main page
+#main body - main page\
+
 for i in range(len(summaries)):
     st.title(summaries[i]['title'])
     st.write(f"published at: {summaries[i]['publishedAt']}")
