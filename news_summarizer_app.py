@@ -35,7 +35,6 @@ def streamlit_menu():
     return selected
 
 
-
 selected = streamlit_menu()
 summaries = get_news_per_genre("General", API_KEY)
 
