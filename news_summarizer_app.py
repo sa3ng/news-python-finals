@@ -1,11 +1,14 @@
 import os
 from app_functions import get_top_headlines, search_articles
 import streamlit as st
+#-----declare imports here
 
+#News API key - Sa3ng
 API_KEY = "4a579d60db244444b74cf8fc149f8d64"
 
 st.title('News Summarizer')
 
+#Sidebar
 search_choice = st.sidebar.radio('', options=['Top Headlines', 'Search Term'])
 sentences_count = st.sidebar.slider('Max sentences per summary:', min_value=1, 
                                                                   max_value=10, 
@@ -37,6 +40,7 @@ elif search_choice == 'Search Term':
                                                      sortBy='publishedAt', 
                                                      q=search_term)
 
+#main body - main page
 for i in range(len(summaries)):
     st.title(summaries[i]['title'])
     st.write(f"published at: {summaries[i]['publishedAt']}")

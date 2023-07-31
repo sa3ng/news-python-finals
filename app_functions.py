@@ -4,6 +4,7 @@ from sumy.summarizers.lsa import LsaSummarizer as Summarizer
 from sumy.nlp.stemmers import Stemmer
 from sumy.utils import get_stop_words
 import requests
+#----imports declare here----
 
 
 def summarize_html(url: str, sentences_count: int, language: str = 'english') -> str:
@@ -56,7 +57,7 @@ def news_api_request(url: str, **kwargs) -> list:
     articles = res.json().get('articles')
     return articles
 
-
+# SUMY sumarizer
 def summarize_news_api(articles: list, sentences_count: int) -> list:
     """
     summarizes text at URL for each element of articles dict 
@@ -79,6 +80,8 @@ def summarize_news_api(articles: list, sentences_count: int) -> list:
         article.update({'summary': summary})
 
     return articles
+
+
 
 
 def search_articles(sentences_count: int, **kwargs) -> list:
@@ -123,3 +126,4 @@ def get_top_headlines(sentences_count: int, **kwargs) -> list:
     url = 'https://newsapi.org/v2/top-headlines/'
     articles = news_api_request(url, **kwargs)
     return summarize_news_api(articles, sentences_count)
+
