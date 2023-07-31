@@ -132,9 +132,9 @@ def get_top_headlines(sentences_count: int, **kwargs) -> list:
     return summarize_news_api(articles, sentences_count)
 
 
-# def get_news_per_genre(genre, api_key):
-#     summaries = get_top_headlines(5, api_key, 
-#                                                    sortBy='publishedAt', 
-#                                                    country='us', 
-#                                                    category= genre)
-#     return summaries
+def get_news_per_genre(genre, api_key):
+    summaries = get_top_headlines(5, apikey = api_key, 
+                                                   sortBy='publishedAt', 
+                                                   country='us', 
+                                                   category= genre)
+    return summaries

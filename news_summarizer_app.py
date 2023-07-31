@@ -1,5 +1,5 @@
 import os
-from app_functions import get_top_headlines, search_articles
+from app_functions import get_top_headlines, search_articles, get_news_per_genre
 import streamlit as st
 from streamlit_option_menu import option_menu
 #-----declare imports here
@@ -37,25 +37,22 @@ def streamlit_menu():
 
 
 selected = streamlit_menu()
-# summaries = get_news_per_genre("General", API_KEY)
+summaries = get_news_per_genre("General", API_KEY)
 
 if selected == "General":
-    summaries = get_top_headlines(5, API_KEY, 
-                                                   sortBy='publishedAt', 
-                                                   country='us', 
-                                                   category= "General")
-# if selected == "Entertainment":
-#     summaries = get_news_per_genre("Entertainment", API_KEY)
-# if selected == "Business":
-#     summaries = get_news_per_genre("Business", API_KEY)    
-# if selected == "Health":
-#     summaries = get_news_per_genre("Health", API_KEY)    
-# if selected == "Science":
-#     summaries = get_news_per_genre("Science", API_KEY)    
-# if selected == "Sports":
-#     summaries = get_news_per_genre("Sports", API_KEY)    
-# if selected == "Technology":
-#     summaries = get_news_per_genre("Technology", API_KEY)    
+    summaries = get_news_per_genre("General", API_KEY)
+if selected == "Entertainment":
+    summaries = get_news_per_genre("Entertainment", API_KEY)
+if selected == "Business":
+    summaries = get_news_per_genre("Business", API_KEY)    
+if selected == "Health":
+    summaries = get_news_per_genre("Health", API_KEY)    
+if selected == "Science":
+    summaries = get_news_per_genre("Science", API_KEY)    
+if selected == "Sports":
+    summaries = get_news_per_genre("Sports", API_KEY)    
+if selected == "Technology":
+    summaries = get_news_per_genre("Technology", API_KEY)    
 
 #main body - main page\
 try:
