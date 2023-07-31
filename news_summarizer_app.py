@@ -4,6 +4,10 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 #-----declare imports here
 
+#Preloading
+with open( "style.css" ) as css:
+    st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
+
 #News API key - Sa3ng
 API_KEY = "4a579d60db244444b74cf8fc149f8d64"
 
