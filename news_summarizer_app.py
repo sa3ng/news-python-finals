@@ -23,6 +23,14 @@ def streamlit_menu():
             icons=["house", "book", "envelope"],  # optional
             menu_icon="cast",  # optional
             default_index=0,  # optional
+            styles = {
+                "container": {
+                    "font-family":"Century Gothic"
+                },
+                "nav-link": {
+                    "font-family":"Century Gothic"
+                },
+            }
         )
     return selected
 
