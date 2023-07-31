@@ -77,8 +77,11 @@ def summarize_news_api(articles: list, sentences_count: int) -> list:
     """
     
     for article in articles:
-        summary = summarize_html(article.get('url'), sentences_count)
-        article.update({'summary': summary})
+        try:
+            summary = summarize_html(article.get('url'), sentences_count)
+            article.update({'summary': summary})
+        except:
+            continue
     return articles
 
 
@@ -128,3 +131,10 @@ def get_top_headlines(sentences_count: int, **kwargs) -> list:
     articles = news_api_request(url, **kwargs)
     return summarize_news_api(articles, sentences_count)
 
+
+# def get_news_per_genre(genre, api_key):
+#     summaries = get_top_headlines(5, api_key, 
+#                                                    sortBy='publishedAt', 
+#                                                    country='us', 
+#                                                    category= genre)
+#     return summaries
