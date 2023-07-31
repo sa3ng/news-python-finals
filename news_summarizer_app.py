@@ -3,6 +3,10 @@ from app_functions import get_top_headlines, search_articles
 import streamlit as st
 #-----declare imports here
 
+#Preloading
+with open( "style.css" ) as css:
+    st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
+
 #News API key - Sa3ng
 API_KEY = "4a579d60db244444b74cf8fc149f8d64"
 
@@ -10,9 +14,7 @@ st.title('News Summarizer')
 
 #Sidebar
 search_choice = st.sidebar.radio('', options=['Top Headlines', 'Search Term'])
-sentences_count = st.sidebar.slider('Max sentences per summary:', min_value=1, 
-                                                                  max_value=10, 
-                                                                  value=3)
+sentences_count = 3
 
 if search_choice == 'Top Headlines':
     category = st.sidebar.selectbox('Search By Category:', options=['business', 
